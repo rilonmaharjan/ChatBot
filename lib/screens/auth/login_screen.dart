@@ -38,6 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     _signInWithGoogle().then((user) async {
       //for hiding progress bar
+      // ignore: use_build_context_synchronously
       Navigator.pop(context);
 
       if (user != null) {
@@ -50,6 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
         } else {
           await APIs.createUser().then((value) {
             Navigator.pushReplacement(
+                // ignore: use_build_context_synchronously
                 context, MaterialPageRoute(builder: (_) => const HomeScreen()));
           });
         }

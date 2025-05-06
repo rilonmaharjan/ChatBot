@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
         //if search is on & back button is pressed then close search
         //or else simple close current screen on back button click
         canPop: false,
-        onPopInvoked: (_) {
+        onPopInvokedWithResult: (_,res) {
           if (_isSearching) {
             setState(() => _isSearching = !_isSearching);
             return;
@@ -273,6 +273,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         await APIs.addChatUser(email).then((value) {
                           if (!value) {
                             Dialogs.showSnackbar(
+                                // ignore: use_build_context_synchronously
                                 context, 'User does not Exists!');
                           }
                         });

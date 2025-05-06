@@ -52,7 +52,7 @@ class _ChatScreenState extends State<ChatScreen> {
         //or else simple close current screen on back button click
         canPop: false,
 
-        onPopInvoked: (_) {
+        onPopInvokedWithResult: (_,res) {
           if (_showEmoji) {
             setState(() => _showEmoji = !_showEmoji);
             return;
@@ -61,6 +61,7 @@ class _ChatScreenState extends State<ChatScreen> {
           // some delay before pop
           Future.delayed(const Duration(milliseconds: 300), () {
             try {
+              // ignore: use_build_context_synchronously
               if (Navigator.canPop(context)) Navigator.pop(context);
             } catch (e) {
               log('ErrorPop: $e');

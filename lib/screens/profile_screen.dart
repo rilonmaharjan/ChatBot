@@ -50,15 +50,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   await APIs.auth.signOut().then((value) async {
                     await GoogleSignIn().signOut().then((value) {
                       //for hiding progress dialog
+                      // ignore: use_build_context_synchronously
                       Navigator.pop(context);
 
                       //for moving to home screen
+                      // ignore: use_build_context_synchronously
                       Navigator.pop(context);
 
                       // APIs.auth = FirebaseAuth.instance;
 
                       //replacing home screen with login screen
                       Navigator.pushReplacement(
+                          // ignore: use_build_context_synchronously
                           context,
                           MaterialPageRoute(
                               builder: (_) => const LoginScreen()));
@@ -180,6 +183,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           _formKey.currentState!.save();
                           APIs.updateUserInfo().then((value) {
                             Dialogs.showSnackbar(
+                                // ignore: use_build_context_synchronously
                                 context, 'Profile Updated Successfully!');
                           });
                         }

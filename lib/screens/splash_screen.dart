@@ -31,6 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
       //navigate
       Navigator.pushReplacement(
+          // ignore: use_build_context_synchronously
           context,
           MaterialPageRoute(
             builder: (_) => APIs.auth.currentUser != null

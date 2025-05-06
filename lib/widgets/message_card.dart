@@ -1,9 +1,9 @@
-import 'dart:developer';
+// import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gallery_saver_updated/gallery_saver.dart';
+// import 'package:gallery_saver_updated/gallery_saver.dart';
 
 import '../api/apis.dart';
 import '../helper/dialogs.dart';
@@ -185,8 +185,8 @@ class _MessageCardState extends State<MessageCard> {
                     borderRadius: BorderRadius.all(Radius.circular(8))),
               ),
 
-              widget.message.type == Type.text
-                  ?
+              // widget.message.type == Type.text
+              //     ?
                   //copy option
                   _OptionItem(
                       icon: const Icon(Icons.copy_all_rounded,
@@ -197,34 +197,38 @@ class _MessageCardState extends State<MessageCard> {
                                 ClipboardData(text: widget.message.msg))
                             .then((value) {
                           //for hiding bottom sheet
+                          // ignore: use_build_context_synchronously
                           Navigator.pop(context);
 
+                          // ignore: use_build_context_synchronously
                           Dialogs.showSnackbar(context, 'Text Copied!');
                         });
-                      })
-                  :
-                  //save option
-                  _OptionItem(
-                      icon: const Icon(Icons.download_rounded,
-                          color: Colors.blue, size: 26),
-                      name: 'Save Image',
-                      onTap: () async {
-                        try {
-                          log('Image Url: ${widget.message.msg}');
-                          await GallerySaver.saveImage(widget.message.msg,
-                                  albumName: 'ChatHub')
-                              .then((success) {
-                            //for hiding bottom sheet
-                            Navigator.pop(context);
-                            if (success != null && success) {
-                              Dialogs.showSnackbar(
-                                  context, 'Image Successfully Saved!');
-                            }
-                          });
-                        } catch (e) {
-                          log('ErrorWhileSavingImg: $e');
-                        }
                       }),
+                  // :
+                  //save option
+                  // _OptionItem(
+                  //     icon: const Icon(Icons.download_rounded,
+                  //         color: Colors.blue, size: 26),
+                  //     name: 'Save Image',
+                  //     onTap: () async {
+                  //       try {
+                  //         log('Image Url: ${widget.message.msg}');
+                  //         await GallerySaver.saveImage(widget.message.msg,
+                  //                 albumName: 'ChatHub')
+                  //             .then((success) {
+                  //           //for hiding bottom sheet
+                  //           // ignore: use_build_context_synchronously
+                  //           Navigator.pop(context);
+                  //           if (success != null && success) {
+                  //             Dialogs.showSnackbar(
+                  //                 // ignore: use_build_context_synchronously
+                  //                 context, 'Image Successfully Saved!');
+                  //           }
+                  //         });
+                  //       } catch (e) {
+                  //         log('ErrorWhileSavingImg: $e');
+                  //       }
+                  //     }),
 
               //separator or divider
               if (isMe)
@@ -255,6 +259,7 @@ class _MessageCardState extends State<MessageCard> {
                     onTap: () async {
                       await APIs.deleteMessage(widget.message).then((value) {
                         //for hiding bottom sheet
+                        // ignore: use_build_context_synchronously
                         Navigator.pop(context);
                       });
                     }),
